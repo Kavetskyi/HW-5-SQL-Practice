@@ -1,0 +1,49 @@
+1. Move dump school66 to your local mysql database school66
+2. Create table level (В якому класі студент 10, 11) and make relation with students.
+3. Make query which select all students with teacher, levels and lessons
+4. All queries write to the file and attach to trello task
+
+
+
+1. CREATE TABLE level(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, levelnum INT);
+2. INSERT INTO level(levelnum) VALUES (10), (11);
+3. ALTER TABLE students ADD COLUMN level_id INT;
+4. UPDATE students SET level_id = 1 WHERE id < 3;
+5. UPDATE students SET level_id = 2 WHERE id >= 3;
+6. SELECT first_name AS FIRST_NAME, last_name AS LAST_NAME, level.levelnum AS LEVEL, lessons.name AS LESSON, lessons.duration AS DURATION,  rooms.name AS ROOM, teachers.name AS TEACHERS FROM students st INNER JOIN level ON st.level_id=level.id LEFT JOIN students_lessons sl ON st.id=sl.student_id RIGHT JOIN lessons ON sl.lesson_id=lessons.id INNER JOIN rooms_lessons rl ON rl.lesson_id=lessons.id LEFT JOIN rooms ON rl.room_id=rooms.id LEFT JOIN teachers ON sl.lesson_id=teachers.lesson_id;
+
+#   SELECT first_name AS FIRST NAME, 
+#          last_name AS LAST NAME,
+#          level.levelnum AS LEVEL, 
+#          lessons.name AS LESSON, 
+#          lessons.duration AS DURATION 
+#          rooms.name AS ROOM
+#          teachers.name AS TEACHERS
+#          FROM students st 
+#          INNER JOIN level ON st.level_id=level.id 
+#          LEFT JOIN students_lessons sl ON st.id=sl.student_id 
+#          RIGHT JOIN lessons ON sl.lesson_id=lessons.id
+#          INNER JOIN rooms_lessons rl ON rl.lesson_id=lessons.id
+#          LEFT JOIN rooms ON rl.room_id=rooms.id
+#          LEFT JOIN teachers ON sl.lesson_id=teachers.lesson_id;
+
++------------+-----------+-------+----------+----------+------------------+----------------------+
+| FIRST_NAME | LAST_NAME | LEVEL | LESSON   | DURATION | ROOM             | TEACHERS             |
++------------+-----------+-------+----------+----------+------------------+----------------------+
+| Yuriy      | Skobylko  |    11 | Math     |       45 | Rocket           | Margaryta Ivanivna   |
+| Petro      | Pravdoryb |    10 | Math     |       45 | Rocket           | Margaryta Ivanivna   |
+| Petro      | Pravdoryb |    10 | Biology  |       45 | Yellow Submarine | Kateryna Yuriivna    |
+| Petro      | Pravdoryb |    10 | Biology  |       45 | Yellow Submarine | Roskolana Stepanivna |
+| Yuriy      | Skobylko  |    11 | Biology  |       45 | Yellow Submarine | Kateryna Yuriivna    |
+| Yuriy      | Skobylko  |    11 | Biology  |       45 | Yellow Submarine | Roskolana Stepanivna |
+| Liubomyr   | Luzhnyi   |    11 | Biology  |       45 | Yellow Submarine | Kateryna Yuriivna    |
+| Liubomyr   | Luzhnyi   |    11 | Biology  |       45 | Yellow Submarine | Roskolana Stepanivna |
+| Ivan       | Pidhaynuy |    10 | Graphity |       45 | Highway to Hello | NULL                 |
+| Ivan       | Pidhaynuy |    10 | IT       |       45 | Rocket           | Yulia Liubomyrivna   |
+| Liubomyr   | Luzhnyi   |    11 | IT       |       45 | Rocket           | Yulia Liubomyrivna   |
+| Yuriy      | Skobylko  |    11 | Math     |       45 | Yellow Submarine | Margaryta Ivanivna   |
+| Petro      | Pravdoryb |    10 | Math     |       45 | Yellow Submarine | Margaryta Ivanivna   |
+| Ivan       | Pidhaynuy |    10 | IT       |       45 | Yellow Submarine | Yulia Liubomyrivna   |
+| Liubomyr   | Luzhnyi   |    11 | IT       |       45 | Yellow Submarine | Yulia Liubomyrivna   |
++------------+-----------+-------+----------+----------+------------------+----------------------+
+15 rows in set (0,00 sec)
