@@ -1,0 +1,146 @@
+
+1. docker build . -t simple_flask
+
+2. docker images
+    REPOSITORY     TAG       IMAGE ID       CREATED         SIZE
+    simple_flask   latest    6e7265b72f41   2 minutes ago   458MB
+    ubuntu         20.04     20fffa419e3a   4 days ago      72.8MB
+
+3. docker run -d 6e7
+    f0226e158654c3b1e6115e218525c5b325f82beb66ea456d884d58c17b47e05e
+
+4. docker ps
+    CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS              PORTS     NAMES
+    f0226e158654   6e7       "/bin/sh -c 'FLASK_A…"   About a minute ago   Up About a minute             silly_lovelace
+
+5. docker attach f02
+
+6. docker stop f02
+    f02
+
+7. docker run -it 6e7
+     * Serving Flask app '/app/app.py' (lazy loading)
+     * Environment: production
+       WARNING: This is a development server. Do not use it in a production deployment.
+       Use a production WSGI server instead.
+     * Debug mode: off
+     * Running on all addresses (0.0.0.0)
+       WARNING: This is a development server. Do not use it in a production deployment.
+     * Running on http://127.0.0.1:8080
+     * Running on http://172.17.0.2:8080 (Press CTRL+C to quit)
+
+8. docker ps
+    CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
+    2be52a967a8d   6e7       "/bin/sh -c 'FLASK_A…"   13 seconds ago   Up 12 seconds             hardcore_hopper
+
+    172.17.0.1 - - [11/Jun/2022 13:41:54] "GET / HTTP/1.1" 200 -
+    172.17.0.1 - - [11/Jun/2022 13:42:07] "GET /hello HTTP/1.1" 200 -
+    172.17.0.1 - - [11/Jun/2022 13:42:49] "GET /my_name HTTP/1.1" 200 -
+    172.17.0.1 - - [11/Jun/2022 13:42:56] "GET / HTTP/1.1" 200 -
+
+9. docker inspect 2be
+    [........]
+
+10. docker logs 2be
+     * Serving Flask app '/app/app.py' (lazy loading)
+     * Environment: production
+       WARNING: This is a development server. Do not use it in a production deployment.
+       Use a production WSGI server instead.
+     * Debug mode: off
+     * Running on all addresses (0.0.0.0)
+       WARNING: This is a development server. Do not use it in a production deployment.
+     * Running on http://127.0.0.1:8080
+     * Running on http://172.17.0.2:8080 (Press CTRL+C to quit)
+    172.17.0.1 - - [11/Jun/2022 13:41:54] "GET / HTTP/1.1" 200 -
+    172.17.0.1 - - [11/Jun/2022 13:42:07] "GET /hello HTTP/1.1" 200 -
+    172.17.0.1 - - [11/Jun/2022 13:42:49] "GET /my_name HTTP/1.1" 200 -
+    172.17.0.1 - - [11/Jun/2022 13:42:56] "GET / HTTP/1.1" 200 -
+
+11. docker run -it --name my_story ubuntu
+    Unable to find image 'ubuntu:latest' locally
+    latest: Pulling from library/ubuntu
+    405f018f9d1d: Pull complete 
+    Digest: sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac
+    Status: Downloaded newer image for ubuntu:latest
+    root@d9fcfbc2bd33:/# 
+
+    root@d9fcfbc2bd33:/# echo "My story"
+    My story
+
+    root@d9fcfbc2bd33:/# echo "My story" > story.txt
+    root@d9fcfbc2bd33:/# 
+
+    root@d9fcfbc2bd33:/# ls
+    bin   dev  home  lib32  libx32  mnt  proc  run   srv        sys  usr
+    boot  etc  lib   lib64  media   opt  root  sbin  story.txt  tmp  var
+
+    root@d9fcfbc2bd33:/# apt-get install cowsay -y
+    Reading package lists... Done
+    Building dependency tree... Done
+    Reading state information... Done
+    E: Unable to locate package cowsay
+
+    root@d9fcfbc2bd33:/# apt update
+    Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+    Get:2 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+    Get:3 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [82.3 kB]
+    Get:4 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [4653 B]
+    Get:5 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [188 kB]
+    Get:6 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [109 kB]                
+    Get:7 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [198 kB]
+    Get:8 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [99.8 kB]           
+    Get:9 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1792 kB]                                                     
+    Get:10 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]                                                
+    Get:11 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]                                               
+    Get:12 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]                                               
+    Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [143 kB]                                         
+    Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [4653 B]                                       
+    Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [209 kB]                                       
+    Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [348 kB]                                             
+    Get:17 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [2016 B]                                       
+    Fetched 21.5 MB in 1min 11s (304 kB/s)                                                                                         
+    Reading package lists... Done
+    Building dependency tree... Done
+    Reading state information... Done
+    5 packages can be upgraded. Run 'apt list --upgradable' to see them.
+    
+    root@d9fcfbc2bd33:/# apt-get install cowsay -y
+
+    root@d9fcfbc2bd33:/# cat story.txt | ./usr/games/cowsay
+     __________
+    < My story >
+     ----------
+            \   ^__^
+             \  (oo)\_______
+                (__)\       )\/\
+                    ||----w |
+                    ||     ||
+    root@d9fcfbc2bd33:/# 
+
+12. docker run -it --name my_story2 ubuntu
+    root@2ee1af1e07dc:/# ls
+    bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+    root@2ee1af1e07dc:/# ./usr/games/cowsay "Hello!"
+    bash: ./usr/games/cowsay: No such file or directory
+    root@2ee1af1e07dc:/# 
+
+13. docker ps
+    CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+    2ee1af1e07dc   ubuntu    "bash"                   4 minutes ago   Up 4 minutes             my_story2
+    d9fcfbc2bd33   ubuntu    "bash"                   2 hours ago     Up 2 hours               my_story
+    2be52a967a8d   6e7       "/bin/sh -c 'FLASK_A…"   3 hours ago     Up 3 hours               hardcore_hopper
+
+14. root@d9fcfbc2bd33:/# ./usr/games/cowsay "Goodbye!"
+     ________
+    < Goodbye! >
+     --------
+            \   ^__^
+             \  (oo)\_______
+                (__)\       )\/\
+                    ||----w |
+                    ||     ||
+    root@d9fcfbc2bd33:/# 
+
+
+
+
