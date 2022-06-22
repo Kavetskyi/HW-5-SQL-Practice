@@ -1,0 +1,15 @@
+body {
+    background-image: url("/static/styles/blue.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100vh
+}
+
+.card {
+    margin-right: 15px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-style: solid;
+    border-color: blue
+}
