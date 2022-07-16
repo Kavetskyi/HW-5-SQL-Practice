@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: python main.py
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=yk_flask_orm
+      - POSTGRES_PASSWORD=yk_flask_orm
+      - POSTGRES_DB_NAME=yk_flask_orm
+  pgweb:
+    image: sosedoff/pgweb
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_URL=postgresql://yk_flask_orm:yk_flask_orm@db:5432/yk_flask_orm?sslmode=disable
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
