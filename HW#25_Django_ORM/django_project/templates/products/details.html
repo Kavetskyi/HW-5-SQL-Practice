@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">{{ product.title }}</h1>
+        <p>{{ product.description }}</p>
+        <hr>
+        <a href="#">{{ product.user.first_name }} {{ product.user.last_name }}</a>
+        <a href="#">{{ product.user.username }}</a>
+    </div>
+</div>
+{% endblock %}

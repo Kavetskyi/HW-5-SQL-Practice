@@ -1,0 +1,28 @@
+.navbar-brand.logo {
+    color: red;
+    font-size: 44px;
+}
+
+.nav-item {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.help {
+    font-size: 11px;
+    color: #999;
+}
+
+.btn btn-primary {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.card {
+    display: inline-block;
+    margin-right: 15px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-style: solid;
+    border-color: blue
+}
