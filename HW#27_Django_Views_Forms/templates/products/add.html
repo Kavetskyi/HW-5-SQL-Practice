@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">Add Product</h1>
+        <form method="POST" action="{% url 'add_product' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" name="title" aria-describedby="title">
+              {% if form.title.errors %}
+                <div class="form-text text-danger">{{ form.title.errors }}</div>
+              {% endif %}
+          </div>
+          <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" name="description"></textarea>
+              {% if form.description.errors %}
+                <div class="form-text text-danger">{{ form.description.errors }}</div>
+              {% endif %}
+          </div>
+          <div class="form-row field-categories">
+              <div>
+                  <label class="required" for="id_categories">Categories:</label>
+                  <div class="related-widget-wrapper">
+                      <select multiple name="categories[]" required="" id="id_categories" size="10">
+                          {% for category in categories %}
+                              <option value="{{ category.id }}">{{ category.name }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+                  <div class="help">Hold down “Control”, or “Command” on a Mac, to select more than one.</div>
+              </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

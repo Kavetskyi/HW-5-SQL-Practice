@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">{{ product.title }}</h1>
+        <p>{{ product.description }}</p>
+        <hr>
+        <a href="#">Creator:   {{ product.user.first_name }} {{ product.user.last_name }}</a>
+        <hr>
+        <div class="edit_del_btn">
+            {% if request.user.is_authenticated and request.user.username == product.user.username %}
+                <a type="button" class="btn btn-primary" href="{% url 'edit_product' product.id %}">Edit</a>
+                <a type="button" class="btn btn-primary" href="{% url 'delete_product' product.id %}">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
