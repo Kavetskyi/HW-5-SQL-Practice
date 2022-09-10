@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h3 class="text-left">Learning products by category:</h3>
+        <form method="POST" action="{% url 'product_by_category' %}">
+          {% csrf_token %}
+          <div class="form-row field-categories">
+              <div>
+                  <div class="related-widget-wrapper">
+                      <select name="categories" required="" id="id_categories" size="5">
+                          {% for category in categories %}
+                            {% if selected_category == category.id %}
+                              <option selected value="{{ category.id }}">{{ category.name }}</option>
+                            {% else %}
+                              <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endif %}
+                          {% endfor %}
+                      </select>
+                  </div>
+              </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="card-list">
+            {% for product in products %}
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.description|truncatechars:30 }}</p>
+                    <a href="{% url 'product_details' id=product.id %}" class="card-link">Details</a>
+                  </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
