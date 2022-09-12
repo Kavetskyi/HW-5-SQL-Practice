@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">Add Category</h1>
+        <form method="POST" action="{% url 'add_category' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
+          </div>
+          <div class="mb-3">
+            <select class="form-select form-select-lg mb-3" name="parent_category" aria-label=".form-select-lg example">
+              <option selected disabled>Open this select menu</option>
+              {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+<!--          <div class="form-row field-categories">-->
+<!--              <div>-->
+<!--                  <label class="required" for="id_categories">Categories:</label>-->
+<!--                  <div class="related-widget-wrapper">-->
+<!--                      <select multiple name="categories[]" required="" id="id_categories" size="10">-->
+<!--                          {% for category in categories %}-->
+<!--                              <option value="{{ category.id }}">{{ category.name }}</option>-->
+<!--                          {% endfor %}-->
+<!--                      </select>-->
+<!--                  </div>-->
+<!--                  <div class="help">Hold down “Control”, or “Command” on a Mac, to select more than one.</div>-->
+<!--              </div>-->
+<!--          </div>-->
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
