@@ -1,0 +1,166 @@
+[
+{
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+        "name": "Category 1",
+        "slug": null,
+        "parent_id": null,
+        "user": 1
+    }
+},
+{
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+        "name": "Category 2",
+        "slug": null,
+        "parent_id": null,
+        "user": 1
+    }
+},
+{
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+        "name": "Category 3",
+        "slug": null,
+        "parent_id": null,
+        "user": 1
+    }
+},
+{
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+        "name": "Category 4",
+        "slug": "category4",
+        "parent_id": 0,
+        "user": 1
+    }
+},
+{
+    "model": "products.category",
+    "pk": 5,
+    "fields": {
+        "name": "IT",
+        "slug": "informationtechnologi",
+        "parent_id": 0,
+        "user": 1
+    }
+},
+{
+    "model": "products.category",
+    "pk": 6,
+    "fields": {
+        "name": "Python",
+        "slug": "python",
+        "parent_id": 5,
+        "user": 1
+    }
+},
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "title": "Product 1",
+        "user": 1,
+        "description": "Description product1",
+        "price": 120,
+        "approved_by": 1,
+        "approved": true,
+        "display_on_main_page": true,
+        "categories": [
+            1
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "title": "Product 2",
+        "user": 1,
+        "description": "Description product 2",
+        "price": 100,
+        "approved_by": 1,
+        "approved": true,
+        "display_on_main_page": true,
+        "categories": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "title": "Product User One",
+        "user": 2,
+        "description": "lkdklaksj lkdj ldkj LDKJ SLDKJ Ldkjs DLKjd",
+        "price": 140,
+        "approved_by": 1,
+        "approved": true,
+        "display_on_main_page": true,
+        "categories": [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+        "title": "Product product IT",
+        "user": 1,
+        "description": "Product product IT Product product IT Product product IT......",
+        "price": 150,
+        "approved_by": 1,
+        "approved": true,
+        "display_on_main_page": true,
+        "categories": [
+            5
+        ]
+    }
+},
+{
+    "model": "products.order",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "name": "jfjfjfjfjfjf",
+        "email": "dgdfsds@gdfsds.com",
+        "address": "hfjdjjddh fkfjkf fkfjf 45",
+        "message": "jfurjf fnvjfhrf fkfkfjf fkfjfjf kf",
+        "total_price": 390
+    }
+},
+{
+    "model": "products.orderitem",
+    "pk": 4,
+    "fields": {
+        "order": 4,
+        "product": 9
+    }
+},
+{
+    "model": "products.orderitem",
+    "pk": 5,
+    "fields": {
+        "order": 4,
+        "product": 2
+    }
+},
+{
+    "model": "products.orderitem",
+    "pk": 6,
+    "fields": {
+        "order": 4,
+        "product": 3
+    }
+}
+]

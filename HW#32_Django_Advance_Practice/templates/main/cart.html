@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% if products %}
+                <h1>Cart:</h1>
+            {% else %}
+                <h1>Your Cart is Empty.</h1>
+            {% endif %}
+            <ul class="list-group cart-list">
+                {% for product in products %}
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">{{ product.title }}</div>
+                      {{ product.description }}
+                    </div>
+                    <div class="additional">
+                        <span class="badge bg-danger rounded-pill">
+                            <a href="{% url 'remove_from_cart' product.id %}">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            </a>
+                        </span>
+                        <div class="fw-bold">{{ product.price }} $</div>
+                    </div>
+                  </li>
+                {% endfor %}
+                {% if products %}
+                    <li class="list-group-item d-flex justify-content-between align-items-baseline">
+                        <div class="fw-bold">Total price: {{ total_price }} $</div>
+                    </li>
+                {% endif %}
+            </ul>
+            {% if products %}
+                <hr>
+                <div>
+                    <a type="button" class="btn btn-lg btn-success" href="{% url 'order' %}">Make order</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

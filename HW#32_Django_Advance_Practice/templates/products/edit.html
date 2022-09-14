@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">Edit Product</h1>
+        <form method="POST" action="{% url 'edit_product' product.id %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ product.title }}" aria-describedby="title">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description">{{ product.description }}</textarea>
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" min="0" class="form-control" id="price" name="price" value="{{ product.price }}">
+            {% if product.approved %}
+                <input type="checkbox" id="approved" name="approved" checked>
+            {% else %}
+                <input type="checkbox" id="approved" name="approved">
+            {% endif %}
+            <label for="approved" style="margin-right:30px">Approved</label>
+            {% if product.display_on_main_page %}
+                <input type="checkbox" id="display_on_main_page" name="display_on_main_page" checked>
+            {% else %}
+                <input type="checkbox" id="display_on_main_page" name="display_on_main_page">
+            {% endif %}
+            <label for="display_on_main_page">Display on main page</label>
+          </div>
+          <div class="form-row field-categories">
+              <div>
+                  <label class="required" for="id_all_categories">Categories:</label>
+                  <div class="related-widget-wrapper">
+                      <select multiple name="categories[]" required="" id="id_all_categories" size="10">
+                          {% for category in all_categories %}
+                            {% if category in list_categories %}
+                              <option selected value="{{ category.id }}">{{ category.name }}</option>
+                            {% else %}
+                              <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endif %}
+                          {% endfor %}
+                      </select>
+                  </div>
+                  <div class="help">Hold down “Control”, or “Command” on a Mac, to select more than one.</div>
+              </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
